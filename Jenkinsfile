@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'node:6-alpine'
-      args '-p 2375:2375'
+      args '-p 3000:3000'
     }
 
   }
@@ -18,6 +18,11 @@ pipeline {
       }
       steps {
         sh './jenkins/scripts/test.sh'
+      }
+    }
+    stage('Deliver') {
+      steps {
+        sh './jenkins/scripts/deliver.sh'
       }
     }
   }
